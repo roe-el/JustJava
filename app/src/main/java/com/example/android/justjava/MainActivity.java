@@ -2,6 +2,7 @@ package com.example.android.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,7 +11,7 @@ import java.text.NumberFormat;
 /**
  * This app displays an order form to order coffee.
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 int quantity = 0;
 
 @Override
@@ -41,7 +42,18 @@ public void decrement(View view) {
  * This method is called when the order button is clicked.
  */
 public void submitOrder(View view) {
-    displayPrice(quantity * 5);
+    int price = 5 * quantity;
+    String priceMessage = "Total= $" + price;
+    priceMessage = priceMessage + "\n Thank You!";
+    displayMessage(priceMessage);
+}
+
+/**
+ * This method displays the given text on the screen.
+ */
+private void displayMessage(String message) {
+    TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+    priceTextView.setText(message);
 }
 
 /**
