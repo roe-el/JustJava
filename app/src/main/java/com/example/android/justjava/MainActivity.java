@@ -42,34 +42,52 @@ public void decrement(View view) {
  * This method is called when the order button is clicked.
  */
 public void submitOrder(View view) {
-    int price = 5 * quantity;
-    String priceMessage = "Total= $" + price;
-    priceMessage = priceMessage + "\n Thank You!";
+
+    String priceMessage = createOrderSummary(calculatePrice(quantity));
     displayMessage(priceMessage);
+
+}
+
+
+/**
+ * Summary of the order
+ *
+ * @param amount is the price
+ * @return the message
+ */
+private String createOrderSummary(int amount) {
+   return "Name: Roel R. Garcia\n" + "Quantity: " + quantity + "\nTotal: $" + amount + "\nThank you!";
+
+}
+
+/**
+ * Calculates the price of the order.
+ *
+ * @param quantity is the number of cups of coffee ordered
+ * @return total price
+ */
+private int calculatePrice(int quantity) {
+
+    return quantity * 5;
+
 }
 
 /**
  * This method displays the given text on the screen.
  */
 private void displayMessage(String message) {
-    TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-    priceTextView.setText(message);
+    TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+    orderSummaryTextView.setText(message);
 }
 
 /**
  * This method displays the given quantity value on the screen.
+ *
+ * @param amount of coffees
  */
 private void displayQuantity(int amount) {
     TextView quantityTextView = (TextView) findViewById(
             R.id.quantity_text_view);
     quantityTextView.setText("" + amount);
-}
-
-/**
- * This method displays the given price on the screen.
- */
-private void displayPrice(int amount) {
-    TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-    priceTextView.setText(NumberFormat.getCurrencyInstance().format(amount));
 }
 }
