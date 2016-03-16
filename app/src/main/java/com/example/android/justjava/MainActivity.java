@@ -25,7 +25,7 @@ protected void onCreate(Bundle savedInstanceState) {
  */
 public void increment(View view) {
     quantity = 1 + quantity;
-    display(quantity);
+    displayQuantity(quantity);
 
 }
 
@@ -34,7 +34,7 @@ public void increment(View view) {
  */
 public void decrement(View view) {
     quantity = quantity - 1;
-    display(quantity);
+    displayQuantity(quantity);
 
 }
 
@@ -59,17 +59,17 @@ private void displayMessage(String message) {
 /**
  * This method displays the given quantity value on the screen.
  */
-private void display(int number) {
+private void displayQuantity(int amount) {
     TextView quantityTextView = (TextView) findViewById(
             R.id.quantity_text_view);
-    quantityTextView.setText("" + number);
+    quantityTextView.setText("" + amount);
 }
 
 /**
  * This method displays the given price on the screen.
  */
-private void displayPrice(int number) {
+private void displayPrice(int amount) {
     TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-    priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    priceTextView.setText(NumberFormat.getCurrencyInstance().format(amount));
 }
 }
