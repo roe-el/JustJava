@@ -3,9 +3,11 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -46,9 +48,11 @@ public void decrement(View view) {
 public void submitOrder(View view) {
     CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
     CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+    EditText nameEditText = (EditText) findViewById(R.id.name_edit_text);
+    Editable nameOfCustomer = nameEditText.getText();
     boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
     boolean hasChocolate = chocolateCheckBox.isChecked();
-    String priceMessage = createOrderSummary(calculatePrice(quantity), hasWhippedCream, hasChocolate);
+    String priceMessage = createOrderSummary(nameOfCustomer, calculatePrice(quantity), hasWhippedCream, hasChocolate);
     displayMessage(priceMessage);
 
 }
@@ -56,22 +60,21 @@ public void submitOrder(View view) {
 
 /**
  * Summary of the order
- *
+ *@param nameEntered      is the text that was entered by the user
  * @param addWhippedCream is whether user wants whipped cream topping
- * @param addChocolate is whether user wants chocolate topping
- * @param amount is the price
+ * @param addChocolate    is whether user wants chocolate topping
+ * @param amount          is the price
  * @return the message
  */
-private String createOrderSummary(int amount, boolean addWhippedCream, boolean addChocolate) {
+private String createOrderSummary(Editable nameEntered, int amount, boolean addWhippedCream, boolean addChocolate) {
 
 
-
-   return "Name: Roel R. Garcia\n" +
-           "Quantity: " + quantity +
-           "\nHas Whipped Cream: " + addWhippedCream +
-           "\nHas Chocolate: " + addChocolate +
-           "\nTotal: $" + amount +
-           "\nThank you!";
+    return "Name: " + nameEntered +
+            "\nQuantity: " + amount +
+            "\nHas Whipped Cream: " + addWhippedCream +
+            "\nHas Chocolate: " + addChocolate +
+            "\nTotal: $" + amount +
+            "\nThank you!";
 
 }
 
