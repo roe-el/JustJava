@@ -33,7 +33,7 @@ protected void onCreate(Bundle savedInstanceState) {
 public void increment(View view) {
     if (quantity == 100) {
         //Toast to show
-        Toast.makeText(this, "You cannot have more than 100 coffees", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.increment_toast), Toast.LENGTH_SHORT).show();
         return; //leaves method
     }
     quantity += 1;
@@ -47,7 +47,7 @@ public void increment(View view) {
 public void decrement(View view) {
     if (quantity == 1) {
         //Toast to show
-        Toast.makeText(this, "You cannot have less than 1 coffees", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.decrement_toast), Toast.LENGTH_SHORT).show();
         return; //leaves method
     }
     quantity -= 1;
@@ -75,7 +75,7 @@ public void submitOrder(View view) {
     Intent intent = new Intent(Intent.ACTION_SENDTO);
     intent.setData(Uri.parse("mailto:")); // only email apps should handle this
     intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
-    intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava order for " + nameOfCustomer);
+    intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject) + nameOfCustomer);
     if (intent.resolveActivity(getPackageManager()) != null) {
         startActivity(intent);
     }
@@ -95,12 +95,12 @@ public void submitOrder(View view) {
 private String createOrderSummary(Editable nameEntered, int quantity, int price, boolean addWhippedCream, boolean addChocolate) {
 
 
-    return "Name: " + nameEntered +
-            "\nQuantity: " + quantity +
-            "\nHas Whipped Cream: " + addWhippedCream +
-            "\nHas Chocolate: " + addChocolate +
-            "\nTotal: $" + price +
-            "\nThank you!";
+    return getString(R.string.order_submited_name) + nameEntered +
+            "\n" + getString(R.string.quantity) + ": " + quantity +
+            "\n" + getString(R.string.whipped_cream) + ": " + addWhippedCream +
+            "\n" + getString(R.string.choco) + ": " + addChocolate +
+            "\n" + getString(R.string.total) + ": $" + price +
+            "\n" + getString(R.string.ty);
 
 
 }
