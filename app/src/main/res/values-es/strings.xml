@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Just Java</string>
+    <string name="choco">Chocolate</string>
+    <string name="decrement_toast">No tengo uno cafe</string>
 </resources>
